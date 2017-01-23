@@ -1,6 +1,5 @@
 # SightWalk 
 ## DS-GA 1006 Final Project, Fall 2016 - Center for Data Science, NYU
-Team:
 - Sebastian Brarda <sb5518@nyu.edu>
 - Felipe Ducau <fnd212@nyu.edu>
 - Maria Elena Villalobos Ponte <mvp291@nyu.edu>
@@ -12,6 +11,8 @@ The  goal  of  this  work  is  to automatically  suggest  alternative  more  enj
 which might take marginally more time but go through spots that would be more interesting to the user. 
 In order to do that, we define a scoring  function  that  weights  each  path  based  on  social  media data.
 Afterwards, we propose two new Graph based optimization algorithms  and  provide  a  demo  UI.
+
+[Technical Report](/SightWalk_Final_Report.pdf)
 
 ## Repository Stucture
 - scraper: code to get data from Flickr either by making use of the API or by directly parsing HTML data
