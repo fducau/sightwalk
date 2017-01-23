@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Sigthwalk - Enjoyable paths</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bower_components/ion.rangeSlider/css/ion.rangeSlider.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/ion.rangeSlider/css/ion.rangeSlider.skinHTML5.css' %}">
+    
+    <!-- Optional theme  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <h1>Sightwalk <small> Enjoy your path!</small></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7 col-md-3">
+                <form action="javascript:;" onsubmit="requestInteresting(this)">
+                    <div class="form-group">
+                        <label for="origin">Origin</label>
+                        <input type="text" class="form-control" id="origin" placeholder="Lat, Lng">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="text" class="form-control" id="destination" placeholder="Lat, Lng">
+                    </div>
+                    <div>
+                        <label for="touristic">Local vs. Touristic</label>
+                        <input id="touristic_slider" type="text" name="touristic_slider" value="0.5">
+                    </div>
+                    <div>
+                        <label for="touristic">Unique vs. Popular</label>
+                        <input id="pop_slider" type="text" name="pop_slider" value="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time Constraint</label>
+                        <input type="text" class="form-control" id="time" value="1.5">
+                    </div>
+                    <div class="form-group">
+                      <label class="radio-inline">
+                        <input type="radio" name="optradio" id="rand" checked="checked"> Randomized Dijkstra
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="optradio" id="a_star"> A*
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <br>
+                <!--<form action="javascript:;" onsubmit="requestScoring(this)">
+                  <button type="submit" class="btn btn-default">Score</button>
+                </form>-->
+            </div>
+
+            <div class="col-xs-11 col-sm-4 col-md-7" id="mapid"></div>
+            <div class="col-xs-1 col-sm-1 col-md-2" id="photogrid">
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <a href="#">
+                      <img class="media-object" id="photo-1" src="https://c2.staticflickr.com/6/5133/13964534385_5cd23c36d5_b.jpg" alt="pepino">
+                    </a>
+                  </div>
+                  <!--<div class="media-body">
+                    <h5 class="media-heading">Washington Square Park</h5>
+                  </div>-->
+                </div>
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <a href="#">
+                      <img class="media-object" id="photo-2" src="https://c1.staticflickr.com/9/8391/8611230323_fe6f2029db_b.jpg" alt="Manhattan">
+                    </a>
+                  </div>
+                  <!--<div class="media-body">
+                    <h5 class="media-heading">Washington Square Park</h5>
+                  </div>-->
+                </div>
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <a href="#">
+                      <img class="media-object" id="photo-3" src="https://c2.staticflickr.com/4/3691/9446419871_a1d5ac0568_b.jpg" alt="pepino">
+                    </a>
+                  </div>
+                  <!--<div class="media-body">
+                    <h5 class="media-heading">Washington Square Park</h5>
+                  </div> -->
+                </div>
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <a href="#">
+                      <img class="media-object" id="photo-4" src="https://c2.staticflickr.com/6/5093/5574945069_404ff60223_b.jpg" alt="pepino">
+                    </a>
+                  </div>
+                  <!--<div class="media-body">
+                    <h5 class="media-heading">Washington Square Park</h5>
+                  </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Slider -->
+    <script src="{% static 'bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js' %}"></script>
+
+    <!-- Our Map JS handler -->
+    <script src="{% static 'js/map.js' %}"></script>
+  </body>
+</html>

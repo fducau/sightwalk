@@ -1,0 +1,9 @@
+#mapid { height: 800px; }
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+.media-object {
+	width: 139px;
+	height: 139px;
+	object-fit: cover;
+}
