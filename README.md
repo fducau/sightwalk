@@ -12,7 +12,8 @@ which might take marginally more time but go through spots that would be more in
 In order to do that, we define a scoring  function  that  weights  each  path  based  on  social  media data.
 Afterwards, we propose two new Graph based optimization algorithms  and  provide  a  demo  UI.
 
-[Technical Report](/SightWalk_Final_Report.pdf)
+* [Technical Report](/SightWalk_Final_Report.pdf)
+* [Poster](/docs/Capstone-poster.pdf)
 
 ## Repository Stucture
 - scraper: code to get data from Flickr either by making use of the API or by directly parsing HTML data
